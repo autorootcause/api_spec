@@ -352,6 +352,7 @@ components:
     UserContextRequest:
       required:
         - id
+        - github_repos
       type: object
       properties:
         id:
@@ -363,6 +364,10 @@ components:
           example: doggie
         service:
           type: string
+        github_repos:
+          type: array
+          items:
+            type: string
     UserContextResponse:
       type: object
       properties:
