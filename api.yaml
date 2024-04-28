@@ -28,6 +28,11 @@ tags:
     externalDocs:
       description: Find out more
       url: http://swagger.io
+  - name: service
+    description: Service info
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
 paths:
   /:
     post:
@@ -158,6 +163,49 @@ paths:
         - petstore_auth:
             - write:pets
             - read:pets
+  /service:
+    post:
+      tags:
+        - service
+      summary: Create service
+      description: This can only be done by admin user.
+      operationId: createService
+      requestBody:
+        description: Created service object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+        default:
+          description: failed to create service
+    put:
+      tags:
+        - service
+      summary: Update service
+      description: This can only be done by admin user.
+      operationId: updateService
+      requestBody:
+        description: Update service object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServiceRequest'
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceResponse'
+        default:
+          description: failed to create service
   /user:
     post:
       tags:
@@ -171,20 +219,11 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/User'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/User'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/User'
       responses:
         default:
           description: successful operation
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-            application/xml:
               schema:
                 $ref: '#/components/schemas/User'
   /user/createWithList:
@@ -208,11 +247,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
-            application/xml:
-              schema:
-                $ref: '#/components/schemas/User'
         default:
-          description: successful operation
+          description: failed to create users
   /user/login:
     get:
       tags:
@@ -339,6 +375,26 @@ components:
           description: User Status
           format: int32
           example: 1
+    ServiceRequest:
+      type: object
+      properties:
+        userID:
+          type: integer
+          format: int64
+        name:
+          type: string
+        github_repos:
+          type: array
+          items:
+            type: string
+    ServiceResponse:
+      type: object
+      properties:
+        serviceID:
+          type: integer
+          format: int64
+        name:
+          type: string
     Tag:
       type: object
       properties:
@@ -364,10 +420,6 @@ components:
           example: doggie
         service:
           type: string
-        github_repos:
-          type: array
-          items:
-            type: string
     UserContextResponse:
       type: object
       properties:
