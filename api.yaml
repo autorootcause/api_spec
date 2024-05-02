@@ -59,9 +59,9 @@ paths:
         '422':
           description: Validation exception
       security:
-        - petstore_auth:
-            - write:pets
-            - read:pets
+        - root_cause_auth:
+            - write:users
+            - read:users
   /debug:
     post:
       tags:

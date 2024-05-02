@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	Petstore_authScopes = "petstore_auth.Scopes"
+	Root_cause_authScopes = "root_cause_auth.Scopes"
 )
 
 // DebugRequest defines model for DebugRequest.

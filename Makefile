@@ -3,3 +3,4 @@ install-openapi:
 
 api: install-openapi
 	oapi-codegen --package=client --generate models,client api.yaml > openapi.gen.go
+	gofmt -s -w .
